@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 
-use App\Models\Log_Access;
+use Selfreliance\AccessLog\Models\Log_Access;
 class AccessLogController extends Controller
 {
     public function index(Request $request)
@@ -15,7 +15,7 @@ class AccessLogController extends Controller
         $status_code    = $request->input('status_code');
         $search    = $request->input('search');
     	$logs = Log_Access::
-        where('status_code', '!=', 200)
+        where('status_code', '!=', 2001)
         ->where(function ($query) use ($status_code) {
             if($status_code != ''){
                 $query->where("status_code", $status_code);
@@ -118,8 +118,12 @@ class AccessLogController extends Controller
     	]);
     }
 
-    public function destroy($id){
-        $Log = Log_Access::where('id', $id)->delete();
+    public function destroy(Request $request){
+        if(count($request->input('application')) > 0){
+            $Log = Log_Access::whereIn('id', $request['application'])->delete();                
+            \Session::flash('success','Выбраные логи были удалены');
+        }
+        
         return redirect()->back();
     }
 }

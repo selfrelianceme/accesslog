@@ -18,6 +18,14 @@ class AccessLogServiceProvider extends ServiceProvider
         $this->app->make('Selfreliance\AccessLog\AccessLogController');
 
         $this->loadViewsFrom(__DIR__.'/views', 'accesslog');
+
+        // $this->publishes([
+        //     __DIR__ . '/migrations/' => database_path('migrations')], 'migrations'
+        // );
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
+        // $this->publishes([
+        //     __DIR__.'/middleware/CheckAccess.php' => app_path('Http/Middleware/CheckAccess.php')], 'middleware'
+        // );        
     }
 
     /**
