@@ -1,7 +1,7 @@
 {
   "name": "selfreliance/accesslog",
   "type": "library",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Access Log view and middleware",
   "keywords": ["admin", "accesslog", "laravel"],
   "homepage": "https://github.com/selfrelianceme/accesslog",

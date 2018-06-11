@@ -59,7 +59,7 @@ class LogAccess
                 $log->user_agent     = "";
             }
             $log->request_uri        = $request->path();
-            $log->ip                 = ($request->header('x-real-ip') == null)?$request->ip():$request->header('x-real-ip');
+            $log->ip                 = real_ip();
             $array = [
                 'libs/bootstrap/css/bootstrap.min.css.map',
                 'libs/selectpicker/js/bootstrap-select.js.map',
